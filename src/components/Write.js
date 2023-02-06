@@ -36,7 +36,6 @@ function Write({ wallet }) {
         const _cid = await client.storeBlob(files)
         setCID(_cid)
         console.log(_cid)
-
         const status = await client.status(_cid)
         console.log(status)
 

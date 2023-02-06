@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Markdown from "markdown-to-jsx"
+import { connect } from "@argent/get-starknet"
 import {
   Contract,
   Provider,
-  uint256,
   number
 } from "starknet"
 

@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { connect } from "@argent/get-starknet"
+import {
+  Contract,
+  Provider,
+  number
+} from "starknet"
 
 import Home from './components/Home';
 import Post from './components/Post';
@@ -25,7 +30,7 @@ function App() {
               <button type="button" className="btn btn-info">Home</button>
             </Link>
             <a href="https://chihaolu.gitbook.io/startikle/" target="_blank">
-              <button>User Guide & About</button>
+            <button>White Paper & User Guide</button>
             </a>
             {
               wallet ?
