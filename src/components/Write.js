@@ -2,12 +2,14 @@ import { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import { NFTStorage } from 'nft.storage'
+import { connect } from "@argent/get-starknet"
 import {
     Contract,
     Provider,
     number
 } from "starknet"
 import { Spin, Space } from 'antd';
+import ContractABI from "./ContractABI.json"
 
 function Write({ wallet }) {
     const [value, setValue] = useState("# Write Your New Article Here!");
@@ -45,9 +47,12 @@ function Write({ wallet }) {
             }
         })
 
+        const starknet = await connect()
+        await starknet.enable();
+        const wallet = starknet.account
+
         const ContractADDR = process.env.REACT_APP_CONTRACT_ADDRESS
-        const ABI = []
-        const StartikleContract = new Contract(ABI, ContractADDR, "wallet");
+        const StartikleContract = new Contract(ContractABI, ContractADDR, wallet);
         try {
             const { transaction_hash: approveTxHash } = await StartikleContract.upload(number.toFelt(cid));
             await starknetProvider.waitForTransaction(approveTxHash)

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import {
-  connect,
-} from "@argent/get-starknet"
+import { connect } from "@argent/get-starknet"
 
 import Home from './components/Home';
 import Post from './components/Post';
