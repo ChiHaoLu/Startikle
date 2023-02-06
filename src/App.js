@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {
   connect,
@@ -7,9 +7,6 @@ import {
 import Home from './components/Home';
 import Post from './components/Post';
 import Write from './components/Write';
-
-// Create Context
-export const ThemeContext = createContext();
 
 function App() {
   const [wallet, setWallet] = useState(null);
@@ -22,7 +19,6 @@ function App() {
   }
 
   return (
-    <ThemeContext.Provider value={wallet}>
       <Router>
         <div>
           <h2>Welcome to Startikle!</h2>
@@ -30,6 +26,9 @@ function App() {
             <Link to={'/'} className="nav-link">
               <button type="button" className="btn btn-info">Home</button>
             </Link>
+            <a href="https://chihaolu.gitbook.io/startikle/" target="_blank">
+              <button>User Guide & About</button>
+            </a>
             {
               wallet ?
                 <button
@@ -40,27 +39,24 @@ function App() {
                   <strong>Login</strong>
                 </button >
                 :
-                <>
-                  <div>
-                    <Link to={'/post'} className="nav-link">
-                      <button type="button" className="btn btn-info">Profile</button>
-                    </Link>
-                    <Link to={'/write'} className="nav-link">
-                      <button type="button" className="btn btn-info">New Post</button>
-                    </Link>
-                  </div>
-                </>
+                <div>
+                  <Link to={'/post'} className="nav-link">
+                    <button type="button" className="btn btn-info">Profile</button>
+                  </Link>
+                  <Link to={'/write'} className="nav-link">
+                    <button type="button" className="btn btn-info">New Post</button>
+                  </Link>
+                </div>
             }
           </div>
           <hr />
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/post' element={<Post />} />
-            <Route path='/write' element={<Write />} />
+            <Route path='/post' element={<Post wallet={wallet} />} />
+            <Route path='/write' element={<Write wallet={wallet} />} />
           </Routes>
         </div>
       </Router>
-    </ThemeContext.Provider>
   );
 }
 

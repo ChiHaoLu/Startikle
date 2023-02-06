@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root {
-  --background-body: #292929;
-  --background-content: #1d1d1d;
-  --text-color: #e5e5e5;
+  --background-body: #F7DBA7;
+  --background-content: #1E2D2F;
+  --text-color: #041F1E;
 }
 
 body {
   margin: 0;
   font-size: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   background: var(--background-body);
   color: var(--text-color);
 }
